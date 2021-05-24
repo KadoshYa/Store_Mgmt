@@ -37,7 +37,7 @@
                                   @foreach($assets as $asset)
                                       <tr>
                                           <td><a href="{{ route ('asset.edit', ['id' => $asset->id ]) }}">{{$asset->asset_name}}</a></td>
-                                          <td >{{$asset->asset_category_id}}</td>
+                                          <td >{{App\Category::find($asset->asset_category_id)->name}}</td>
                                           <td >{{$asset->asset_quantity}}</td>    
                                           <td >{{$asset->asset_unit_price}}</td>
                                           <td >{{$asset->asset_total_price}}</td>
@@ -60,4 +60,16 @@
     </section>
 
  
+@endsection
+
+
+@section('jsblock')
+ <script>
+ var cells = document.getElementById("example1").getElementsByTagName("td");
+for (var i = 0; i < cells.length; i++) {
+    if (cells[i].innerHTML == "1" || cells[i].innerHTML == "2") {
+        cells[i].style.backgroundColor = "red";
+    }
+} 
+ </script>
 @endsection
